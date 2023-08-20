@@ -31,6 +31,26 @@ helm repo add hashicorp https://helm.releases.hashicorp.com
 helm install vault hashicorp/vault --set server.dev.enabled=true
 ```
 
+#### Error on Windows
+Get "https://127.0.0.1:8200/v1/sys/seal-status": http: server gave HTTP response to HTTPS client
+
+#### Solution
+Open Git Bash on Windows machine (if you have installed vault on windows), otherwise these commands will not work!!!
+
+### Vault init and unseal
+```
+vault operator init
+vault operator unseal <<keys 1>>
+vault operator unseal <<keys 2>>
+vault operator unseal <<keys 3>>
+```
+
+```
+export VAULT_ADDR='http://localhost:8200'
+export VAULT_TOKEN=hvs.OoYTWLHCJDAfEortz7ZroWS2
+```
+
+
 ### Enable the database secrets engine
 ```
 vault secrets enable database
